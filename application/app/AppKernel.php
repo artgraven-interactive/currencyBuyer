@@ -10,7 +10,7 @@ class AppKernel extends Kernel
     {
         date_default_timezone_set( 'Africa/Johannesburg' );
         set_time_limit(0);
-        ini_set('memory_limit','68M');
+        ini_set('memory_limit','256M');
         parent::__construct($environment, $debug);
     }
     
@@ -26,7 +26,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
+           new cspoo\Swiftmailer\MailgunBundle\cspooSwiftmailerMailgunBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
         ];
 

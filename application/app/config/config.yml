@@ -62,11 +62,16 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
-    spool: { type: memory }
+    transport: "mailgun"
+    spool:     { type: memory }
+    #spool:
+    #    type: file
+    #    path: '%kernel.root_dir%/../web/emails'
+
+cspoo_swiftmailer_mailgun:
+    key: "key-9f42a4b3651283dedee9591deb87807d"
+    domain: "mail.sinappsus.net"
+
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'

@@ -116,7 +116,7 @@
                        <!-- Admin -->
                      {% if is_granted('ROLE_ADMIN')  %}
                     <li id="link_dashboard" class="navigation__active">
-                        <a  href="/admin/dashboard/"><i class="zmdi zmdi-home"></i>Dashboard</a>
+                        <a  href="/admin/"><i class="zmdi zmdi-home"></i>Dashboard</a>
                     </li>
 
                     {% endif %}
@@ -132,9 +132,6 @@
                     <!-- Admin -->
                       <ul class="navigation">
                      {% if is_granted('ROLE_ADMIN')  %}
-                    <li class="">
-                        <a href="/users/"><i class="zmdi zmdi-accounts-alt"></i>User Management</a>
-                    </li>
                     <li>
                         <a  href="/rates/"><i class="zmdi zmdi-map"></i>Manage Rates</a>
                     </li>

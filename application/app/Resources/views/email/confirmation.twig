@@ -1,0 +1,57 @@
+<h1>TAX INVOICE</h2>
+
+<table style="width: 100%">
+        <thead>
+            <tr  style="text-transform: uppercase">
+                <th>Item Description</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tboday>
+            <tr>
+                <td style="width: 50%">Currency</td>
+                <td>{{transaction.Currency}}</td>
+            </tr>
+            <tr>
+                <td style="width: 50%">Exhange rate at the time of purchase</td>
+                <td>{{transaction.Rate}}</td>
+            </tr>
+            <tr>
+                <td style="width: 50%">The surcharge at the time of transaction</td>
+                <td>{{transaction.Surchage}}</td>
+            </tr>
+            <tr>
+                <td style="width: 50%">The amount of currency Purchased</td>
+                <td>{{transaction.AmountPurchased}}</td>
+            </tr>
+            
+            <tr>
+                <td style="width: 50%">The time of the transaction</td>
+                <td>{{transaction.TransactionDate | date()}}</td>
+            </tr>
+            <tr>
+                <td style="width: 50%">Transaction Complete Status</td>
+                <td>{{transaction.TransactionStatus}}</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>$ {{transaction.AmountPaid}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+<div>
+        <h5>LEGAL NOTICE</h5>
+        <p>Ornare non tortor. Nam quis ipsum vitae dolor porttitor interdum. Curabitur faucibus erat vel ante fermentum lacinia. Integer porttitor laoreet suscipit. Sed cursus cursus massa ut pellentesque. Phasellus vehicula dictum arcu, eu interdum massa bibendum.</p>
+
+        <h5 class="mt-5">THANK YOU FOR YOUR BUSINESS</h5>
+        <p>Proin ac iaculis metus. Etiam nisi nulla, fermentum blandit consectetur sed, ornare non tortor. Nam quis ipsum vitae dolor porttitor interdum. Curabitur faucibus erat vel ante fermentum lacinia. Integer porttitor laoreet suscipit. Sed cursus cursus massa ut pellentesque. Phasellus vehicula dictum arcu, eu interdum massa bibendum sit amet.</p>
+</div>
+    
+<footer>
+        <a href="">support@mukuru.co.za</a>
+        <a href="">00971 452 9900</a>
+        <a href="">www.mukuru.co.za</a>
+</footer>
+    </div>
+

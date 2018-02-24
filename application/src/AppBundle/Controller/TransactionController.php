@@ -72,7 +72,7 @@ class TransactionController extends Controller
             $needle =  $this->CheckoutRun($currency,$amount);
    
             if($needle['status'] == true){
-                 //next lets store the transaction
+            //next lets store the transaction
             $transaction = new History();
             $transaction->setAmountPaid($needle['amount']);
             $transaction->setAmountPurchased($AmountPurchased);
@@ -85,6 +85,13 @@ class TransactionController extends Controller
             $em->persist($transaction);
             $em->flush();
             }
+            
+            //send email confirmation if required
+           if($currency->getNotify() == true){
+               //if you are having issues sending mail from local using this service
+               // insure you have a cert installed and try again
+                $this->SendEmail($transaction,$user);
+           }
           
             $serializer = $this->get('jms_serializer');
             $response   =     $serializer->serialize($transaction, 'json');
@@ -108,11 +115,6 @@ class TransactionController extends Controller
         
         //process a discount and deduct the funds from wallet
          $amount = $this->ProcessFees($amount,$currency);
-
-        //now lets check if we need to send it to the user
-            if($currency->getNotify() == true){
-                $this->SendEmail($transaction);
-            }
             
         //if all went well. lets return the transaction object if it didnt lets return an error
             $needle['status'] = true;
@@ -121,17 +123,22 @@ class TransactionController extends Controller
     }
     
     
-    private function SendEmail(){
+    private function SendEmail($transaction,$user){
         //a function used to send a confirmation of the transaction to the user
-        
+             $message = \Swift_Message::newInstance()
+                    ->setSubject('Mukuru Tax Invoice')
+                    ->setFrom('noreply@sinappsus.net')
+                    ->setTo($user->getEmail())
+                    ->setBody( $this->render('email/confirmation.twig',[ 'transaction' => $transaction]), 'text/html');
+             
+             if($this->container->get('mailer')->send($message)){
         return true;
+             }else{return false;}
     }
     
     private function ProcessFees($amount,$currency){
         //a function used to process discounts based on the discount at the current rate
-        //echo '<pre>';
-        //print_r($currency);
-       // die('</pre>');
+
         //first we add the surcharge
        if($currency->getSurcharge() !== 0){
            
@@ -140,7 +147,7 @@ class TransactionController extends Controller
         //next we reduce by the discount if any
         if($currency->getDiscount() !== 0){
         //turn rate into a decimal
-            $discount = ($discount/100);
+            $discount = ($currency->getDiscount()/100);
             $increase = ($discount*$currency->getExchange());
             $amount = ($amount - $increase);
         }

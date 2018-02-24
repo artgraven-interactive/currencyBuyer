@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary" id="updateCurrency">update Currency</button>
+            <span class="status"></status>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-sm-12">
+           <table id="data-table" class="table table-responsive table-striped">
+            <thead class="thead-default">
+                    <tr>
+                        <th>User</th>
+                        <th>Impersonate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for user in users %}
+                       <tr>
+                           <td>{{user.email}}</td>
+                           <td><a href="{{ path('user_dashboard', { '_switch_user' : user.username }) }}">impersonate user</a></td>
+                       </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+{% endblock %}
+{% block javascripts %}
+    
+     <script>
+         $('#updateCurrency').on('click',function(e){
+             
+             $('.status').html('just a sec while we fetch the latest exchange rates');
+             $('.page-loader').fadeIn("slow");
+              $.get("/rates/updateRates", 
+            function(result){
+                $('.page-loader').fadeOut("slow");
+            $('.status').html('All done, the currencies have all been updated');
+            });
+            
+         });
+      
+    </script>
+{% endblock %}     

@@ -47,7 +47,7 @@ class Rates
     protected $checkDate;
     
     /**
-     * @ORM\Column(type="boolean", name="notify") 
+     * @ORM\Column(type="boolean", name="notify", nullable=true) 
      */
     protected $notify;
     
