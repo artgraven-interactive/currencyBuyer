@@ -1,8 +1,29 @@
 {% trans_default_domain 'FOSUserBundle' %}
+          <div class="login__block active" id="l-login">
+                <div class="login__block__header">
+                    <i class="zmdi zmdi-account-circle"></i>
+                   Register to start purchasing currency
 
+                    <div class="actions actions--inverse login__block__actions">
+                        <div class="dropdown">
+                            <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item"></i>
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                               
+                                <a class="dropdown-item"  href="/resetting/request">Forgot password?</a>
+                                <a class="dropdown-item"  href="/login">Login?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login__block__body">
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_widget(form) }}
     <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+
+        <input type="submit" id="_submit" name="_submit"  value=">"  class="zmdi zmdi-long-arrow-right btn btn--icon login__block__btn">
     </div>
 {{ form_end(form) }}
+
+</div>

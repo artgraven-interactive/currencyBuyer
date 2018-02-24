@@ -90,6 +90,7 @@ class TransactionController extends Controller
            if($currency->getNotify() == true){
                //if you are having issues sending mail from local using this service
                // insure you have a cert installed and try again
+               // also email must be a valid email or we will also fail and we arent currently handling for such failures which one would do it a real application
                 $this->SendEmail($transaction,$user);
            }
           

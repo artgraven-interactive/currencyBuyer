@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User edit</h1>
+<div class="row">
+    <div class="col-lg-12">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+ <div class="card-body">
+   <h4 class="card-title">User Account edit</h4>
+    {{ form_start(edit_form, { 'attr' : { 'class': 'form form--simple' } }) }}
+    {% form_theme edit_form 'fields.twig' %}
+      <div class="form-group">  
+        <input class="btn btn-primary" type="submit" value="update" />
+        </div>
     {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
+ </div>
+ 
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+ </div>
+            </div>
 {% endblock %}

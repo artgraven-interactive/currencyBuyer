@@ -3,8 +3,27 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
+       <div class="login__block active" id="l-login">
+                <div class="login__block__header">
+                    <i class="zmdi zmdi-account-circle"></i>
+                   You can now purchase currency
+
+                    <div class="actions actions--inverse login__block__actions">
+                        <div class="dropdown">
+                            <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item"></i>
+
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login__block__body">
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
     {% if targetUrl %}
     <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    
     {% endif %}
+    <p><a href="/welcome">Click here to begin</a></p>
+     </div>
+       </div>
 {% endblock fos_user_content %}

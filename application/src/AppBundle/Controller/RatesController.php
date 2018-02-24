@@ -73,21 +73,6 @@ class RatesController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a rate entity.
-     *
-     * @Route("/{id}", name="rates_show")
-     * @Method("GET")
-     */
-    public function showAction(Rates $rate)
-    {
-        $deleteForm = $this->createDeleteForm($rate);
-
-        return $this->render('rates/show.html.twig', array(
-            'rate' => $rate,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
 
     /**
      * Displays a form to edit an existing rate entity.
@@ -114,43 +99,6 @@ class RatesController extends Controller
         ));
     }
 
-    /**
-     * Deletes a rate entity.
-     *
-     * @Route("/{id}", name="rates_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Rates $rate)
-    {
-        $form = $this->createDeleteForm($rate);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($rate);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('rates_index');
-    }
-
-    /**
-     * Creates a form to delete a rate entity.
-     *
-     * @param Rates $rate The rate entity
-     *
-     * @return Form The form
-     */
-    private function createDeleteForm(Rates $rate)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('rates_delete', array('id' => $rate->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
-    
-    
     private function api($paramaters){
        // as this is a very basic api i decided to simply use curl to handle the calls as no real authentication was required other than passing in the access key
         $ch = curl_init();
