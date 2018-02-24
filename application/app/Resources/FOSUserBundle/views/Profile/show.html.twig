@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block fos_user_content %}
+     <div class="card">
+    <div class="card-body">
+    <h4 class="card-title">Personal Information as recorded by admin</h4>
+    {% include "@FOSUser/Profile/show_content.html.twig" %}
+    </div>
+</div>
+{% endblock fos_user_content %}

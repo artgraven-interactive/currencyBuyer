@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+            <div class="col-sm-12">
+           <table id="data-table" class="table table-responsive table-striped">
+        <thead class="thead-default">
+                    <tr>
+                        <th>Invoice#</th>
+                        <th>Purchased</th>
+                        <th>Currency</th>
+                        <th>Surplus</th>
+                        <th>Date</th>
+                        <th>Invoice</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                        <tr>
+                            <td>{{transaction.id}}</td>
+                            <td>{{transaction.AmountPaid}}</td>
+                            <td>{{transaction.Currency}}</td>
+                            <td>{{transaction.Surchage}}</td>
+                            <td>{{transaction.TransactionDate | date()}}</td>
+                            <th><a href="/transaction/{{transaction.id}}" class="btn btn-primary">Invoice</a></th>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+{% endblock %}
+
+

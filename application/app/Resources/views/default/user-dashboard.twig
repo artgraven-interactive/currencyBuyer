@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+    <div class="col-sm-12">
+        <p>Welcome {{app.user.name}}</p>
+    </div>
+    </div>
+        <div class="row">
+            <div class="col-sm-12">
+           <table id="data-table" class="table table-responsive table-striped">
+        <thead class="thead-default">
+                    <tr>
+                        <th>Currency</th>
+                        <th>Exhange Rate</th>
+                        <th>Discount</th>
+                        <th>Quote TO usd</th>
+                        <th>Quote FOR usd</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for rate in rates %}
+                        <tr>
+                            <td>{{rate.currency}}</td>
+                            <td>{{rate.exchange}}</td>
+                            <td>{{rate.discount}}</td>
+                            <td>
+                                <div class="input-group">
+                                    <div class="form-group">
+                                        <input type="text" id="currency-to_{{rate.id}}" class="form-control"  placeholder="enter the amount of currency to purchase">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    <span data-name="currency-to" data-value="{{rate.id}}"  data-currency="{{rate.currency}}" class="input-group-addon">get quote</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <div class="form-group">
+                                        <input type="text" id="currency-for_{{rate.id}}" class="form-control" placeholder="enter the amount of usd you wish to quote for">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    <span data-name="currency-for" data-value="{{rate.id}}" data-currency="{{rate.currency}}" class="input-group-addon">get quote</span>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    
+     <script>
+         $('.input-group-addon').on('click',function(e){
+            $('#myOptionsModal').modal('show');
+            
+            var option = $(this).attr("data-name");
+            var reference = $(this).attr("data-value");
+            var amount = $("#"+option+"_"+reference).val();
+            
+            /*
+             * please note we are doing ajax calls here and not just using the data because
+             * a: its required to do ajax
+             * b: values may change during the time the page stays as we are not using ajax to refresh the table although we could.
+             * * as such the ajax call will call a method in the controller that based on the action sent will run one of 2 methods.
+             * * i dont need to send the currency amount details as i am getting that from the id associated to the currency so i can get the latest information
+             */
+             $.post("/calculator/GetQuote", 
+            {
+                action:option,
+                rate:reference,
+                amount:amount
+            }, 
+            function(result){
+            $('#choice').html('Input: '+amount);
+            $('#price').html('Estimate: '+result);
+            $('#action').attr("data-choice",option);
+            $('#action').attr("data-currency",reference);
+            $('#notice').html('prices may vary due to surcharges, discounts and exhange rate at the time of the transaction');
+            if(option == "currency-for"){
+                $('#action').attr("data-charge",amount);
+                $('#action').attr("data-purchase",result);
+            }else{
+                $('#action').attr("data-charge",result);
+                $('#action').attr("data-purchase",amount);
+            }
+            });
+            
+         });
+         
+         $('#Confirm').on('click',function(e){
+           
+            var choice = $('#action').attr("data-choice");
+            var charge = $('#action').attr("data-charge");
+            var currency = $('#action').attr("data-currency");
+            var purchased = $('#action').attr("data-purchase");
+            var credit = '{{app.user.credit}}';
+            console.log(credit);
+            console.log(charge);
+            if(credit >= charge){
+             $.post("/transaction/ProcessTransaction", 
+            {
+                choice:choice,
+                charge:charge,
+                currency:currency,
+                purchased:purchased
+            }, 
+            function(result){
+                 var obj = JSON.parse(result);
+            $('.modal-title').html('Transaction Complete');
+            $('#notice').html('you are being redirected to view the invoice');
+            window.location.href = "/transaction/"+obj._id;
+            });
+        }else{
+            console.log('mmm');
+            $('.modal-title').html('unsufficient funds');
+            $('#notice').html('oops seems you are out of funds, you can top up you\'re wallet in the profile section as it is currently at $'+credit);
+        }
+         });
+     </script>
+{% endblock %}

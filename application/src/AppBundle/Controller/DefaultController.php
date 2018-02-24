@@ -13,9 +13,33 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $auth_checker = $this->get('security.authorization_checker');
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+        
+      if($auth_checker->isGranted('ROLE_ADMIN') ){
+        
+        return $this->redirectToRoute('admin_dashboard');
+        
+        }elseif($auth_checker->isGranted('IS_AUTHENTICATED_FULLY')){
+        
+        return $this->redirectToRoute('user_dashboard');
+        }else{
+           
+           //not yet logged in lets redirect to login for now.
+           // in future we will redirect to normal web view
+           return $this->redirectToRoute('fos_user_security_login');
+        }
+    }
+    
+    
+    /**
+     * @Route("/welcome", name="user_dashboard")
+     */
+    public function WelcomeAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $rates = $em->getRepository('AppBundle:Rates')->findAll();
+         return $this->render('default/user-dashboard.twig',array('rates' => $rates));
     }
 }

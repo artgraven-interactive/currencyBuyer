@@ -19,9 +19,15 @@ Setup
 Dependencies?
 --------------
 
-I used some libraries and components to help speed up my work flow:
+I used some libraries and components to bootstrap my work flow:
 
-  * FOS User Bundle;
+  * FOS User Bundle - for managing users;
+  * Luiggio Excel Bundle - for building excel reports;
+    https://github.com/liuggio/ExcelBundle
+  * JMS Serializer Bundle - serializing objects to json;
+    https://github.com/schmittjoh/JMSSerializerBundle
+  * EightPointsGuzzleBundle - api calls
+    https://packagist.org/packages/eightpoints/guzzle-bundle
   * A custom bootstrap template for look and feel;
   * Mail Gun for sending out mail;
 

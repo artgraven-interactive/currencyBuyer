@@ -53,6 +53,12 @@ class User extends BaseUser
     protected $credit;
     
     
+    /**
+     * @ORM\Column(type="string", name="currency", nullable=true)
+     */
+    protected $currency;
+    
+    
     //getters
     function getId() {
         return $this->id;
@@ -80,6 +86,10 @@ class User extends BaseUser
 
     function getCredit() {
         return $this->credit;
+    }
+
+    function getCurrency() {
+        return $this->currency;
     }
 
     //setters
@@ -110,6 +120,11 @@ class User extends BaseUser
     function setCredit($credit) {
         $this->credit = $credit;
     }
+
+    function setCurrency($currency) {
+        $this->currency = $currency;
+    }
+
 
 
 }

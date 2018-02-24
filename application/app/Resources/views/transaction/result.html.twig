@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="invoice">
+        <div class="invoice__header">
+            <p class="invoice__logo"><h1>TAX INVOICE</h2></p>
+        </div>       
+        <div class="row invoice__address">
+                            <div class="col-6">
+                                <div class="text-right">
+                                    <p>Invoice from</p>
+
+                                    <h4>Artgraven Interactive LLC</h4>
+
+                                    <address>
+                                        33, Homestead
+                                        Rivonia, Gauteng<br>
+                                        South Africa
+                                    </address>
+
+                                    083386859<br>
+                                    artgraven@gmail.com
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="text-left">
+                                    <p>Invoice to</p>
+
+                                    <h4>{{app.user.username}}</h4>
+
+                                    <address>
+                                        89 Garsfontein
+                                        Mukuru Offices, Pretoria<br>
+                                        South Africa.
+                                    </address>
+
+                                    <br>
+                                    {{app.user.email}}
+                                </div>
+                            </div>
+                        </div>
+    <div class="row invoice__attrs">
+                            <div class="col-3">
+                                <div class="invoice__attrs__item">
+                                    <small>Invoice#</small>
+                                    <h3>{{transaction.id}}</h3>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="invoice__attrs__item">
+                                    <small>Date</small>
+                                    <h3>{{transaction.TransactionDate |date('d-m-Y')}}</h3>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="invoice__attrs__item">
+                                    <small>Paid</small>
+                                    <h3>$ {{transaction.AmountPaid}}</h3>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div class="invoice__attrs__item">
+                                    <small>Purchased</small>
+                                    <h3>{{transaction.AmountPurchased}}</h3>
+                                </div>
+                            </div>
+                        </div>
+    <table class="table table-responsive table-bordered invoice__table">
+        <thead>
+            <tr class="text-uppercase">
+                <th>Item Description</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tboday>
+            <tr>
+                <td style="width: 50%">Currency</td>
+                <td>{{transaction.Currency}}</td>
+            </tr>
+            <tr>
+                <td style="width: 50%">Exhange rate at the time of purchase</td>
+                <td>{{transaction.Rate}}</td>
+            </tr>
+            <tr>
+                <td style="width: 50%">The surcharge at the time of transaction</td>
+                <td>{{transaction.Surchage}}</td>
+            </tr>
+            <tr>
+                <td style="width: 50%">The amount of currency Purchased</td>
+                <td>{{transaction.AmountPurchased}}</td>
+            </tr>
+            
+            <tr>
+                <td style="width: 50%">The time of the transaction</td>
+                <td>{{transaction.TransactionDate | date()}}</td>
+            </tr>
+            <tr>
+                <td style="width: 50%">Transaction Complete Status</td>
+                <td>{{transaction.TransactionStatus}}</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>$ {{transaction.AmountPaid}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <div class="invoice__remarks">
+                            <h5>LEGAL NOTICE</h5>
+                            <p>Ornare non tortor. Nam quis ipsum vitae dolor porttitor interdum. Curabitur faucibus erat vel ante fermentum lacinia. Integer porttitor laoreet suscipit. Sed cursus cursus massa ut pellentesque. Phasellus vehicula dictum arcu, eu interdum massa bibendum.</p>
+
+                            <h5 class="mt-5">THANK YOU FOR YOUR BUSINESS</h5>
+                            <p>Proin ac iaculis metus. Etiam nisi nulla, fermentum blandit consectetur sed, ornare non tortor. Nam quis ipsum vitae dolor porttitor interdum. Curabitur faucibus erat vel ante fermentum lacinia. Integer porttitor laoreet suscipit. Sed cursus cursus massa ut pellentesque. Phasellus vehicula dictum arcu, eu interdum massa bibendum sit amet.</p>
+                        </div>
+    
+    <footer class="invoice__footer">
+                            <a href="">support@mukuru.co.za</a>
+                            <a href="">00971 452 9900</a>
+                            <a href="">www.mukuru.co.za</a>
+                        </footer>
+    </div>
+    
+{% endblock %}

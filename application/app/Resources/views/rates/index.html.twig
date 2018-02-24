@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Rates list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Currency</th>
+                <th>Surcharge</th>
+                <th>Exchange</th>
+                <th>Checkdate</th>
+                <th>Notify</th>
+                <th>Discount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rate in rates %}
+            <tr>
+                <td><a href="{{ path('rates_show', { 'id': rate.id }) }}">{{ rate.id }}</a></td>
+                <td>{{ rate.currency }}</td>
+                <td>{{ rate.surcharge }}</td>
+                <td>{{ rate.exchange }}</td>
+                <td>{% if rate.checkDate %}{{ rate.checkDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if rate.notify %}Yes{% else %}No{% endif %}</td>
+                <td>{{ rate.discount }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('rates_show', { 'id': rate.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('rates_edit', { 'id': rate.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rates_new') }}">Create a new rate</a>
+        </li>
+    </ul>
+{% endblock %}
