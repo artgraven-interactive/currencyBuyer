@@ -149,13 +149,7 @@ class TransactionController extends Controller
 
         //first we add the surcharge
        if($currency->getSurcharge() !== 0){
-            $clientpays = $amount;
-            $conversionForgeign = $currency->getExchange();
-            $surcharggeUSD = $currency->getSurcharge();
-
-            $calculateSurcharge = ($clientpays*$surcharggeUSD);
-            
-            $amount = ($amount+$calculateSurcharge);
+          
        }
         
         //next we reduce by the discount if any
