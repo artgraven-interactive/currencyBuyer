@@ -8,11 +8,13 @@ The following are useful resources when reviewing the use and my thinking when c
 These resource can be found in the Resources folder in the root
 
     * users guide
-    * technical test instructions
-    * core reasoning
 
 Setup
------
+=====
+
+note that you can run using the built in server as described further down below
+alternatively you can use a virtual host by following the configuration steps on the symfony site
+further you can bypass this by redirecting to web folder via the htaccess all this is up to the tester but a version has been setup online for demo purposes 
 
 
 Dependencies?
@@ -29,7 +31,7 @@ I used some libraries and components to bootstrap my work flow:
   * Mail Gun for sending out mail;
     https://packagist.org/packages/dugandzic/swiftmailer-mailgun-bundle
     optional - troubleshoot 
-        note that if you are sending mail from local you should have your php configured with ssl as guzzle is used as part of the transfer protocal
+        note that if you are sending mail from local you should have your php configured with ssl as guzzle is used as part of the transfer protocol
         for newbs you can grab a free .pem from a link here http://flwebsites.biz/posts/how-fix-curl-error-60-ssl-issue
 
 3rd Party api's and keys
@@ -62,13 +64,13 @@ so lets get started
     3. composer install - this assumes composer is installed globally
         3.1 this will install the dependencies and ask you for mail configuration and database configuration
         3.1.1 use the correct db info
-        3.1.2 use a valid email address and smtp as the protocal - note we will change this later but sometimes it can bug out if you use a dependancy before installed
+        3.1.2 use a valid email address and smtp as the protocal - note we will change this later but sometimes it can bug out if you use a dependency before installed
     4. from inside the application folder run the following command to get started
         4.1 bin/console doctrine:schema:update --force
         4.2 bin/console server:run 
             4.2.1 this will start the internal server but note your mysql should already be running at this point.
             4.2.2 you can also skip this step if you setup a virtual host but given the file path this may be a bit of a process as it involves rewrites but you will point it into the web folder and handle the loading page which is app.php not index.php
-        4.3 the dependancies are managed using npm and grunt and bower
+        4.3 the dependencies are managed using npm and grunt and bower
             4.3.1 if the assets didn't install already or there are some issues with the views then install grunt/bower first assuming npm is installed
             4.3.2 by running the command: npm install -g grunt-cli - this is mostly used for helping compile of the sass files and such tasks
             4.3.3 to install missing third party vendors insure bower is installed
@@ -115,7 +117,7 @@ so lets get started
         5.1.3 u can also use the same package to create a user from the command line and to promote or demote them
         5.2 for testing it is recommended to have a normal user and an admin user. this is because transactions depend on funds available in the wallet at currently only admin can top up a users wallet with funds
     6. one can use the internal mail system which is switch by doing the usual configurations in the paramaters.yml and config.yml but for ease of transfer and domain i have opted to use mailgun which pushes to a third party provider
-        6.1 the configuration will be fine in the config.yml but you must update the paramaters.yml and change the mail protocall from smtp to mailgun for it to read 
+        6.1 the configuration will be fine in the config.yml but you must update the paramaters.yml and change the mail protocol from smtp to mailgun for it to read 
         6.2 note that using curl via guzzle will by default require ssl. check the mailgun options at the top for suggestions on manually adding an ssl cert if you are new to local ssl configurations or are having problems with this
     7. login as admin and on the admin dashboard you will find the update currencies button. run this to populate the database with all available currencies
 
@@ -124,11 +126,26 @@ Currency Calculator Features
 this calculator has some special features and functions that should be noted
 
   * all currencies are called from the jsonrates api
-  * each currency has a surplus, discount and notify feature associated to it which can be udpated in the admin as the default is 0 or false when first created
+  * each currency has a surplus, discount and notify feature associated to it which can be updated in the admin as the default is 0 or false when first created
   * admin has impersonation ability of users. please note that when impersonating a user; you are that user and must press exit impersonation to become an admin again.
   * all transactions are dependant on wallet funds. only admin can update the wallet funds by going to the user table and choosing edit to update the funds or add user info. but note all new users will have a default wallet fund of 100 (aren't we generous)
 
+Demo
+-------
 
+for convenience a version of the above has been setup and can be accessed
+    url: http://mukuru.artgraven.com/
+    admin
+        username: admin
+        password: admin
+    buyer
+        Username: test
+        Password: test
+
+Documentation
+-------------
+
+Full user documentation can be found in the /resources folder
 
 
             
