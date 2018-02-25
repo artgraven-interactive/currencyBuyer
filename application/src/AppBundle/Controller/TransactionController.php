@@ -139,10 +139,23 @@ class TransactionController extends Controller
     
     private function ProcessFees($amount,$currency){
         //a function used to process discounts based on the discount at the current rate
+        
+        /*
+         * okay this part was a bit unclear as it doesnt specify when the surcharge and discount is added 
+         * for example should it be added before the quote or after when we do the transaction
+         * then also discount is the discount added to the surcharge or to the final amount
+         * as i was unsure i am just applying the surcharge to the amount sent and then applying the discount to the resulting amount
+         */
 
         //first we add the surcharge
        if($currency->getSurcharge() !== 0){
-           
+            $clientpays = $amount;
+            $conversionForgeign = $currency->getExchange();
+            $surcharggeUSD = $currency->getSurcharge();
+
+            $calculateSurcharge = ($clientpays*$surcharggeUSD);
+            
+            $amount = ($amount+$calculateSurcharge);
        }
         
         //next we reduce by the discount if any
