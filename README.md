@@ -1,5 +1,5 @@
-Mukuru Technical Test
-========================
+Currency Convertor and Buyer
+============================
 
 Resources
 ---------
