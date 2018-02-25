@@ -57,13 +57,13 @@ Getting Started
 if you are new to symfony you can find some documentation on their site https://symfony.com/. note that we are using symfony 3.4 or the standard edition
 so lets get started
 
-  1. git pull the repo and cd into application folder
-  2. create a database table to be used for your project
-  3. composer install - this assumes composer is installed globally
+    1. git pull the repo and cd into application folder
+    2. create a database table to be used for your project
+    3. composer install - this assumes composer is installed globally
         3.1 this will install the dependencies and ask you for mail configuration and database configuration
         3.1.1 use the correct db info
         3.1.2 use a valid email address and smtp as the protocal - note we will change this later but sometimes it can bug out if you use a dependancy before installed
-  4. from inside the application folder run the following command to get started
+    4. from inside the application folder run the following command to get started
         4.1 bin/console doctrine:schema:update --force
         4.2 bin/console server:run 
             4.2.1 this will start the internal server but note your mysql should already be running at this point.
@@ -108,16 +108,16 @@ so lets get started
                         Rate Yo!
                         jqTree
                         jQuery Text Counter
-  5. now that you are setup and ready to go you will need a user 
+    5. now that you are setup and ready to go you will need a user 
         5.1.0 you can create a user by clicking on the register item of first loaded page or going directly to {{url_base}}/register
         5.1.1 there are normal users and admin users. once you have created a user you can promote this user to admin by using the console
         5.1.2 in the application folder run the following command: bin/console fos:user:promote and follow the promotes you will need your username and the user role is ROLE_ADMIN to make the user an admin
         5.1.3 u can also use the same package to create a user from the command line and to promote or demote them
         5.2 for testing it is recommended to have a normal user and an admin user. this is because transactions depend on funds available in the wallet at currently only admin can top up a users wallet with funds
-  6. one can use the internal mail system which is switch by doing the usual configurations in the paramaters.yml and config.yml but for ease of transfer and domain i have opted to use mailgun which pushes to a third party provider
+    6. one can use the internal mail system which is switch by doing the usual configurations in the paramaters.yml and config.yml but for ease of transfer and domain i have opted to use mailgun which pushes to a third party provider
         6.1 the configuration will be fine in the config.yml but you must update the paramaters.yml and change the mail protocall from smtp to mailgun for it to read 
         6.2 note that using curl via guzzle will by default require ssl. check the mailgun options at the top for suggestions on manually adding an ssl cert if you are new to local ssl configurations or are having problems with this
-  7. login as admin and on the admin dashboard you will find the update currencies button. run this to populate the database with all available currencies
+    7. login as admin and on the admin dashboard you will find the update currencies button. run this to populate the database with all available currencies
 
 Currency Calculator Features
 --------------
