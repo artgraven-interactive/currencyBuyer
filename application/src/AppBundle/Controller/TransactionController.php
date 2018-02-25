@@ -71,6 +71,7 @@ class TransactionController extends Controller
         // if they have enough funds we can go ahead and process the transaction  
             $needle =  $this->CheckoutRun($currency,$amount);
    
+            
             if($needle['status'] == true){
             //next lets store the transaction
             $transaction = new History();
@@ -149,7 +150,14 @@ class TransactionController extends Controller
 
         //first we add the surcharge
        if($currency->getSurcharge() !== 0){
-          
+            $clientpays = $amount;
+            $conversionForgeign = $currency->getExchange();
+            $surcharggeUSD = ($currency->getSurcharge()/100);
+
+            $calculateSurcharge = ($clientpays*$surcharggeUSD);
+            
+            $amount = ($amount+$calculateSurcharge);
+           
        }
         
         //next we reduce by the discount if any
@@ -159,7 +167,7 @@ class TransactionController extends Controller
             $increase = ($discount*$currency->getExchange());
             $amount = ($amount - $increase);
         }
-        
+         
        $this->updateUserWallet($amount);
         
         return $amount;
