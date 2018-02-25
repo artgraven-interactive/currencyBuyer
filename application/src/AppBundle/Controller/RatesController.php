@@ -82,7 +82,6 @@ class RatesController extends Controller
      */
     public function editAction(Request $request, Rates $rate)
     {
-        $deleteForm = $this->createDeleteForm($rate);
         $editForm = $this->createForm('AppBundle\Form\RatesType', $rate);
         $editForm->handleRequest($request);
 
@@ -95,7 +94,6 @@ class RatesController extends Controller
         return $this->render('rates/edit.html.twig', array(
             'rate' => $rate,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

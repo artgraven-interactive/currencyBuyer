@@ -48,13 +48,13 @@ class User extends BaseUser
     protected $address;
     
     /**
-     * @ORM\Column(type="integer", name="credit", nullable=true)
+     * @ORM\Column(type="integer", name="credit", nullable=true, options={"default" : 100}))
      */
     protected $credit;
     
     
     /**
-     * @ORM\Column(type="string", name="currency", nullable=true)
+     * @ORM\Column(type="string", name="currency", nullable=true, options={"default" : "USD"}))
      */
     protected $currency;
     

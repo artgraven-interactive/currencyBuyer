@@ -57,7 +57,7 @@ class History
     
     /**      
       * @ORM\ManyToOne(targetEntity="User", inversedBy="id")      
-      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")      
+      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")      
       */ 
     protected $user;
     

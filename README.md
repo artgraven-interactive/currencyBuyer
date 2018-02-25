@@ -126,7 +126,7 @@ this calculator has some special features and functions that should be noted
   * all currencies are called from the jsonrates api
   * each currency has a surplus, discount and notify feature associated to it which can be udpated in the admin as the default is 0 or false when first created
   * admin has impersonation ability of users. please note that when impersonating a user; you are that user and must press exit impersonation to become an admin again.
-  * all transactions are dependant on wallet funds. only admin can update the wallet funds by going to the user table and choosing edit to update the funds or add user info
+  * all transactions are dependant on wallet funds. only admin can update the wallet funds by going to the user table and choosing edit to update the funds or add user info. but note all new users will have a default wallet fund of 100 (aren't we generous)
 
 
 
