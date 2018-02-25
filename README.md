@@ -117,6 +117,16 @@ so lets get started
     6. one can use the internal mail system which is switch by doing the usual configurations in the paramaters.yml and config.yml but for ease of transfer and domain i have opted to use mailgun which pushes to a third party provider
         6.1 the configuration will be fine in the config.yml but you must update the paramaters.yml and change the mail protocall from smtp to mailgun for it to read 
         6.2 note that using curl via guzzle will by default require ssl. check the mailgun options at the top for suggestions on manually adding an ssl cert if you are new to local ssl configurations or are having problems with this
+    7. login as admin and on the admin dashboard you will find the update currencies button. run this to populate the database with all available currencies
+
+Currency Calculator Features
+--------------
+this calculator has some special features and functions that should be noted
+
+    * all currencies are called from the jsonrates api
+    * each currency has a surplus, discount and notify feature associated to it which can be udpated in the admin as the default is 0 or false when first created
+    * admin has impersonation ability of users. please note that when impersonating a user; you are that user and must press exit impersonation to become an admin again.
+    * all transactions are dependant on wallet funds. only admin can update the wallet funds by going to the user table and choosing edit to update the funds or add user info
 
 
 
