@@ -68,7 +68,7 @@ so lets get started
         4.2 bin/console server:run 
             4.2.1 this will start the internal server but note your mysql should already be running at this point.
             4.2.2 you can also skip this step if you setup a virtual host but given the file path this may be a bit of a process as it involves rewrites but you will point it into the web folder and handle the loading page which is app.php not index.php
-        4.3 the dependencies are managed using npm and grunt and bower
+        4.3 OPTIONAL: the dependencies are managed using npm and grunt and bower
             4.3.1 if the assets didn't install already or there are some issues with the views then install grunt/bower first assuming npm is installed
             4.3.2 by running the command: npm install -g grunt-cli - this is mostly used for helping compile of the sass files and such tasks
             4.3.3 to install missing third party vendors insure bower is installed
