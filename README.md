@@ -25,8 +25,6 @@ I used some libraries and components to bootstrap my work flow:
   * FOS User Bundle - for managing users;
   * JMS Serializer Bundle - serializing objects to json;
     https://github.com/schmittjoh/JMSSerializerBundle
-  * EightPointsGuzzleBundle - api calls
-    https://packagist.org/packages/eightpoints/guzzle-bundle
   * A custom bootstrap template for look and feel;
   * Mail Gun for sending out mail;
     https://packagist.org/packages/dugandzic/swiftmailer-mailgun-bundle
