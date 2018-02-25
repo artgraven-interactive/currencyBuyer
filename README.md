@@ -9,7 +9,6 @@ These resource can be found in the Resources folder in the root
 
     * users guide
     * technical test instructions
-    * database relationship model
     * core reasoning
 
 Setup
@@ -22,14 +21,13 @@ Dependencies?
 I used some libraries and components to bootstrap my work flow:
 
   * FOS User Bundle - for managing users;
-  * Luiggio Excel Bundle - for building excel reports;
-    https://github.com/liuggio/ExcelBundle
   * JMS Serializer Bundle - serializing objects to json;
     https://github.com/schmittjoh/JMSSerializerBundle
   * EightPointsGuzzleBundle - api calls
     https://packagist.org/packages/eightpoints/guzzle-bundle
   * A custom bootstrap template for look and feel;
   * Mail Gun for sending out mail;
+    https://packagist.org/packages/dugandzic/swiftmailer-mailgun-bundle
 
 
 3rd Party api's and keys
